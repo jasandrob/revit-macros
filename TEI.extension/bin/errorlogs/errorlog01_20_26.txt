@@ -1,0 +1,63 @@
+01_20_26 08:11:32
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_20_26 08:33:10
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_20_26 09:57:31
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_20_26 14:25:59
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 165, in main
+    s_path = find_spath()
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 70, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jvdeusen\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 38, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+Exception: This Document is not a workshared document.
+
+----------------------------
+01_20_26 14:25:59
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_20_26 14:52:01
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_20_26 15:03:09
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------

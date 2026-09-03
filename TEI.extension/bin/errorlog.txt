@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-saved.py", line 230, in main
+    fail()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-saved.py", line 48, in fail
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
