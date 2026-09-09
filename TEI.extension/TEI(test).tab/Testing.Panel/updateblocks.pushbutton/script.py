@@ -71,11 +71,25 @@ def select_blocks():
             # title="Done", 
             # exitscript=False
         # )
+    
+    return matching_links
 
 def check_master():
-#creates a list of all the details in the sync revit directory
+#creates a list of all the details in the sync revit directory, 
 
+    #path for master revit details and checks if it exsits
     sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
+    
+    if not os.path.exists(sync_path):
+        forms.alert(
+            "The directory does not exist:\n{}".format(sync_path), 
+            title="Path Not Found", 
+            warn_icon=True
+        )
+        return None  # Exit the function early
+    
+    
+    
     
     all_items = os.listdir(sync_path)
     
@@ -85,8 +99,17 @@ def check_master():
         if os.path.isfile(os.path.join(sync_path, f)) and f.lower().endswith('.dwg')
     ]
     
-    for file in dwg_files:
-        print(file)
+    #checks for dwg files
+    if not dwg_files:
+        forms.alert(
+            "The sync directory {} exists, but contains no .dwg files.".format(sync_path), 
+            title="No DWG Files Found", 
+            warn_icon=True
+        )
+        return None  # Exit the function early
+    
+    
+    master_set = set([dwg_files])
 
 
 def natural_sort_key(s):
@@ -95,7 +118,7 @@ def natural_sort_key(s):
     
     
 def main():
-    select_blocks()
+    selected_blocks = select_blocks()
     check_master()
 
 
