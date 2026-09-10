@@ -4,11 +4,14 @@ updates blocks
 """
 import os
 import re
+from pathlib import Path
 from pyrevit import revit, forms
 from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance
 
+doc = revit.doc
+
+
 def select_blocks():
-    doc = revit.doc
     uidoc = revit.uidoc
 
     # Get the active view/sheet ID
@@ -56,9 +59,10 @@ def select_blocks():
     )
 
     # If the user made a selection, update Revit's active selection
+    selected_links = None
     if selected_names:
 
-        selected_links = [matching_links[name][1] for name in selected_names]
+        selected_links = [matching_links[name] for name in selected_names]
         
         # selected_elements = [matching_links[name] for name in selected_names]
         # element_ids = [el.Id for el in selected_elements]
@@ -71,15 +75,14 @@ def select_blocks():
             # title="Done", 
             # exitscript=False
         # )
+    return selected_links
     
-    return matching_links
+    
 
-def check_master():
+def check_master(sync_path):
 #creates a list of all the details in the sync revit directory, 
 
     #path for master revit details and checks if it exsits
-    sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
-    
     if not os.path.exists(sync_path):
         forms.alert(
             "The directory does not exist:\n{}".format(sync_path), 
@@ -87,8 +90,7 @@ def check_master():
             warn_icon=True
         )
         return None  # Exit the function early
-    
-    
+
     
     
     all_items = os.listdir(sync_path)
@@ -98,6 +100,7 @@ def check_master():
         f for f in all_items
         if os.path.isfile(os.path.join(sync_path, f)) and f.lower().endswith('.dwg')
     ]
+    
     
     #checks for dwg files
     if not dwg_files:
@@ -109,8 +112,59 @@ def check_master():
         return None  # Exit the function early
     
     
-    master_set = set([dwg_files])
+    master_set = set(dwg_files)
+    
+    
+    return master_set
 
+
+def compare(selected_blocks, master_set,sync_path):
+    #compares a list and checks if the set items are contained within the list
+    
+    #safety check to ensure linked files are in the same directory folder as the workshared model
+    if doc.IsWorkshared:
+        central_model_path = doc.GetWorksharingCentralModelPath()
+        
+        # Convert the ModelPath object to a readable string format
+        central_path = ModelPathUtils.ConvertModelPathToUserVisiblePath(central_model_path)
+        print(central_path)
+        parts = Path(central_path).parts
+        
+        job_dir = parts[1:4]
+        
+    else:
+        #since our safety check uses the workshared location exit the script if it is not workshared
+        forms.alert("Model is not workshared",title="Error updating",exitscript=True)
+
+
+    not_found = []
+    for block in selected_blocks:
+        
+        block_name = os.path.basename(block[1])
+        
+        print(job_dir)
+        print(Path(block[1]).parts[1:4])
+        #checks if the block is in the job directory
+        if Path(block[1]).parts[1:4] == job_dir:
+            if block_name in master_set:
+                print(block_name)
+            else:
+                not_found.append(block_name)
+        else:
+            #ends the script if block is not in the job directory
+            forms.alert(
+                'Block "{}" is not saved in the job directory "{}". Please relink block to this directory and try again'.format(block_name,central_path),
+                title="Error updating",
+                exitscript=True)
+    
+    #error message if non-master blocks selected
+    if(len(not_found)) > 0:        
+        not_found = "\n".join(not_found)
+        forms.alert(
+            "Some selected blocks could not be found: {}".format(not_found),
+            title="Non-master blocks selected"
+        )
+   
 
 def natural_sort_key(s):
     # Splits the string into text and integer chunks
@@ -118,9 +172,14 @@ def natural_sort_key(s):
     
     
 def main():
-    selected_blocks = select_blocks()
-    check_master()
+    sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
 
+    selected_blocks = select_blocks()
+    
+    if selected_blocks:
+        master_set = check_master(sync_path)
+        compare(selected_blocks, master_set, sync_path)
+    
 
 if __name__ == "__main__":
     main()
