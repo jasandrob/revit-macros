@@ -140,6 +140,7 @@ def compare(selected_blocks, master_set,sync_path):
 
     not_found = []
     link_list = []
+    name_list = []
     for [block_type,block_path] in selected_blocks:
         
         block_name = os.path.basename(block_path)
@@ -152,8 +153,11 @@ def compare(selected_blocks, master_set,sync_path):
             if block_name in master_set:
                 
                 master_blk_path = os.path.join(sync_path, block_name)
-                replace_file(master_blk_path, str(Path(*parts_blk_path[:-1])))
-                link_list.append(block_type)
+                replace_success = replace_file(master_blk_path, str(Path(*parts_blk_path[:-1])))
+                    
+                if replace_success:
+                    link_list.append(block_type)
+                    name_list.append(block_name)
             else:
                 not_found.append(block_name)
         else:
@@ -173,6 +177,14 @@ def compare(selected_blocks, master_set,sync_path):
    
     if len(link_list) > 0:
         reload(link_list)
+        
+        name_list= "\n".join(name_list)
+        forms.alert(
+            "Sucessfully updated {} blocks: \n{}".format(len(link_list), name_list),
+            title="Updated blocks",
+            warn_icon=False
+        )        
+    
 
 
 def natural_sort_key(s):
@@ -188,12 +200,12 @@ def replace_file(source_path, destination_folder):
     
     # 1. Safety Check: Verify the source file actually exists
     if not os.path.isfile(source_path):
-        print("Safety Error: Source file not found:\n{}".format(source_path))
+        forms.alert("Source block not found:\n{}".format(source_path), title="Error")
         return False
         
     # 2. Safety Check: Verify the destination folder exists
     if not os.path.isdir(destination_folder):
-        print("Safety Error: Destination directory does not exist:\n{}".format(destination_folder))
+        forms.alert("Destination directory does not exist:\n{}".format(destination_folder), title="Error")
         return False
         
     # Extract the file name to build the full destination file path
@@ -206,11 +218,10 @@ def replace_file(source_path, destination_folder):
         # shutil.copy2 copies the file AND preserves its original metadata/timestamps
         shutil.copy2(source_path, destination_file_path)
         
-        print("Success: Replaced '{}' in destination folder.".format(file_name))
         return True
         
     except Exception as e:
-        print("Error: Could not copy file '{}'. Reason: {}".format(file_name, str(e)))
+        forms.alert("Error: Could not copy file '{}'. Reason: {}".format(file_name, str(e)), title="Error")
         return False    
  
  
