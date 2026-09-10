@@ -3,6 +3,7 @@
 updates blocks
 """
 import os
+import shutil
 import re
 from pathlib import Path
 from pyrevit import revit, forms
@@ -141,13 +142,16 @@ def compare(selected_blocks, master_set,sync_path):
     for block in selected_blocks:
         
         block_name = os.path.basename(block[1])
-        
-        print(job_dir)
-        print(Path(block[1]).parts[1:4])
+        parts_blk_path = Path(block[1]).parts
+        print(parts_blk_path[:-1])
+        print(Path(*parts_blk_path[:-1]))
+
         #checks if the block is in the job directory
-        if Path(block[1]).parts[1:4] == job_dir:
+        if parts_blk_path[1:4] == job_dir:
             if block_name in master_set:
-                print(block_name)
+                
+                master_blk_path = os.path.join(sync_path, block_name)
+                replace_file(master_blk_path, str(Path(*parts_blk_path[:-1])))
             else:
                 not_found.append(block_name)
         else:
@@ -169,8 +173,43 @@ def compare(selected_blocks, master_set,sync_path):
 def natural_sort_key(s):
     # Splits the string into text and integer chunks
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+
+
+def replace_file(source_path, destination_folder):
+    """
+    Safely copies a file from source_path to destination_folder,
+    replacing it if it already exists.
+    """
     
+    # 1. Safety Check: Verify the source file actually exists
+    if not os.path.isfile(source_path):
+        print("Safety Error: Source file not found:\n{}".format(source_path))
+        return False
+        
+    # 2. Safety Check: Verify the destination folder exists
+    if not os.path.isdir(destination_folder):
+        print("Safety Error: Destination directory does not exist:\n{}".format(destination_folder))
+        return False
+        
+    # Extract the file name to build the full destination file path
+    file_name = os.path.basename(source_path)
+    destination_file_path = os.path.join(destination_folder, file_name)
     
+    # 3. Safety Check: Attempt the copy inside a try/except block 
+    # (Catches file-in-use locks, permission denials, or network drops)
+    try:
+        # shutil.copy2 copies the file AND preserves its original metadata/timestamps
+        shutil.copy2(source_path, destination_file_path)
+        
+        print("Success: Replaced '{}' in destination folder.".format(file_name))
+        return True
+        
+    except Exception as e:
+        print("Error: Could not copy file '{}'. Reason: {}".format(file_name, str(e)))
+        return False    
+ 
+
+ 
 def main():
     sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
 
