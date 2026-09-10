@@ -7,7 +7,7 @@ import shutil
 import re
 from pathlib import Path
 from pyrevit import revit, forms
-from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance
+from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance, Transaction
 
 doc = revit.doc
 
@@ -139,10 +139,11 @@ def compare(selected_blocks, master_set,sync_path):
 
 
     not_found = []
-    for block in selected_blocks:
+    link_list = []
+    for [block_type,block_path] in selected_blocks:
         
-        block_name = os.path.basename(block[1])
-        parts_blk_path = Path(block[1]).parts
+        block_name = os.path.basename(block_path)
+        parts_blk_path = Path(block_path).parts
         print(parts_blk_path[:-1])
         print(Path(*parts_blk_path[:-1]))
 
@@ -152,6 +153,7 @@ def compare(selected_blocks, master_set,sync_path):
                 
                 master_blk_path = os.path.join(sync_path, block_name)
                 replace_file(master_blk_path, str(Path(*parts_blk_path[:-1])))
+                link_list.append(block_type)
             else:
                 not_found.append(block_name)
         else:
@@ -169,6 +171,9 @@ def compare(selected_blocks, master_set,sync_path):
             title="Non-master blocks selected"
         )
    
+    if len(link_list) > 0:
+        reload(link_list)
+
 
 def natural_sort_key(s):
     # Splits the string into text and integer chunks
@@ -208,7 +213,24 @@ def replace_file(source_path, destination_folder):
         print("Error: Could not copy file '{}'. Reason: {}".format(file_name, str(e)))
         return False    
  
+ 
+ 
+ 
+def reload(link_list):
+    #reloads all the links in the given list
+    try:
+        with Transaction(doc, "Reload Selected CAD Blocks") as t:
+            t.Start()
+                
+            for link in link_list:
+                # Reload from its stored path
+                link.Reload()
+            
+            t.Commit()
+            
 
+    except Exception as e:
+        forms.alert("Failed to reload CAD link.\n\nError: {}".format(str(e)), title="Error")
  
 def main():
     sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
