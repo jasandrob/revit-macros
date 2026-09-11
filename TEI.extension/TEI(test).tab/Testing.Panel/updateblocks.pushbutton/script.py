@@ -164,7 +164,7 @@ def compare(selected_blocks, master_set,sync_path):
         else:
             #ends the script if block is not in the job directory
             forms.alert(
-                'Block "{}" is not saved in the job directory "{}". Please relink block to this directory and try again'.format(block_name,central_path),
+                'Block "{}" is not saved in the job directory "{}". \nPlease relink block to this directory and try again'.format(block_name,central_path),
                 title="Error updating",
                 exitscript=True)
     
@@ -172,7 +172,7 @@ def compare(selected_blocks, master_set,sync_path):
     if(len(not_found)) > 0:        
         not_found = "\n".join(not_found)
         forms.alert(
-            "Some selected blocks could not be found: {}".format(not_found),
+            "Some selected blocks could not be found: {} \n \nPlease rename block to one in the master directory and try again ".format(not_found),
             title="Non-master blocks selected"
         )
    
