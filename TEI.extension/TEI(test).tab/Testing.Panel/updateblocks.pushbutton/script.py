@@ -6,11 +6,12 @@ import os
 import shutil
 import re
 from pathlib import Path
-from pyrevit import revit, forms
+from pyrevit import revit, forms, script
 from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance, Transaction
+from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
 
 doc = revit.doc
-
+uiapp = revit.HOST_APP.uiapp
 
 def select_blocks():
     uidoc = revit.uidoc
@@ -229,6 +230,10 @@ def replace_file(source_path, destination_folder):
  
 def reload(link_list):
     #reloads all the links in the given list
+    
+    # 1. Subscribe to the event handler before starting the transaction
+    uiapp.DialogBoxShowing += handle_cad_dialog
+    
     try:
         with Transaction(doc, "Reload Selected CAD Blocks") as t:
             t.Start()
@@ -242,7 +247,23 @@ def reload(link_list):
 
     except Exception as e:
         forms.alert("Failed to reload CAD link.\n\nError: {}".format(str(e)), title="Error")
- 
+
+    finally:
+        # 2. Crucial: Always unsubscribe from the event in a 'finally' block 
+        # to prevent it from affecting other standard Revit pop-ups later.
+        uiapp.DialogBoxShowing -= handle_cad_dialog
+
+def handle_cad_dialog(sender, args):
+    """Event handler to catch the paper/model space prompt and auto-select Yes."""
+    if isinstance(args, TaskDialogShowingEventArgs):
+        # Look for keywords related to the paper/model space prompt in the dialog message
+        message_text = args.Message.lower()
+        if "paper space" in message_text or "model space" in message_text:
+            # Override result with '6', which corresponds to clicking 'Yes'
+            args.OverrideResult(1)
+
+
+
 def main():
     sync_path = "S:\MECHANICAL\_CostcoDetails\_SyncRevitDetails"
 
