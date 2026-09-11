@@ -2,6 +2,7 @@
 """
 updates blocks
 """
+
 import os
 import shutil
 import re
@@ -9,12 +10,14 @@ import re
 from pathlib import Path
 from pyrevit import revit, forms, script
 from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance, Transaction
-#from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
 
 from functions import handle_cad_dialog
 
+
+
 doc = revit.doc
 uiapp = revit.HOST_APP.uiapp
+
 
 def select_blocks():
     uidoc = revit.uidoc
@@ -25,6 +28,7 @@ def select_blocks():
     # Collect all CAD Link Types in the model
     link_types = FilteredElementCollector(doc, active_view_id).OfClass(ImportInstance)
 
+    print("3: " + str(time.time()-start_time))
     # Filter links that start with "DP_" or "DM_"
     matching_links = {}
     for link in link_types:
