@@ -5,10 +5,13 @@ updates blocks
 import os
 import shutil
 import re
+
 from pathlib import Path
 from pyrevit import revit, forms, script
 from Autodesk.Revit.DB import FilteredElementCollector, CADLinkType, ExternalFileUtils, ModelPathUtils, ImportInstance, Transaction
-from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
+#from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
+
+from functions import handle_cad_dialog
 
 doc = revit.doc
 uiapp = revit.HOST_APP.uiapp
@@ -129,7 +132,6 @@ def compare(selected_blocks, master_set,sync_path):
         
         # Convert the ModelPath object to a readable string format
         central_path = ModelPathUtils.ConvertModelPathToUserVisiblePath(central_model_path)
-        print(central_path)
         parts = Path(central_path).parts
         
         job_dir = parts[1:4]
@@ -146,8 +148,6 @@ def compare(selected_blocks, master_set,sync_path):
         
         block_name = os.path.basename(block_path)
         parts_blk_path = Path(block_path).parts
-        print(parts_blk_path[:-1])
-        print(Path(*parts_blk_path[:-1]))
 
         #checks if the block is in the job directory
         if parts_blk_path[1:4] == job_dir:
@@ -253,14 +253,14 @@ def reload(link_list):
         # to prevent it from affecting other standard Revit pop-ups later.
         uiapp.DialogBoxShowing -= handle_cad_dialog
 
-def handle_cad_dialog(sender, args):
-    """Event handler to catch the paper/model space prompt and auto-select Yes."""
-    if isinstance(args, TaskDialogShowingEventArgs):
-        # Look for keywords related to the paper/model space prompt in the dialog message
-        message_text = args.Message.lower()
-        if "paper space" in message_text or "model space" in message_text:
-            # Override result with '6', which corresponds to clicking 'Yes'
-            args.OverrideResult(1)
+# def handle_cad_dialog(sender, args):
+    # """Event handler to catch the paper/model space prompt and auto-select Yes."""
+    # if isinstance(args, TaskDialogShowingEventArgs):
+        # # Look for keywords related to the paper/model space prompt in the dialog message
+        # message_text = args.Message.lower()
+        # if "paper space" in message_text or "model space" in message_text:
+            # # Override result with '1', which corresponds to clicking 'Yes'
+            # args.OverrideResult(1)
 
 
 
