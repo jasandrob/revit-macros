@@ -4,6 +4,7 @@ reload linked cad code
 """
 
 import os
+
 from Autodesk.Revit.DB import CADLinkType, ImportInstance, ModelPathUtils
 from Autodesk.Revit.UI.Selection import ObjectType
 from Autodesk.Revit.Exceptions import OperationCanceledException
@@ -19,12 +20,15 @@ selected_ids = uidoc.Selection.GetElementIds()
 # If nothing is selected, prompt the user to pick one interactively
 if not selected_ids:
     try:
+
         picked_ref = uidoc.Selection.PickObject(ObjectType.Element, "Please select a CAD link in the view.")
         if picked_ref:
+
             selected_ids = [picked_ref.ElementId]
     except OperationCanceledException:
         # User pressed ESC to cancel the prompt
         script.exit()
+
 
 cad_link_type = None
 
