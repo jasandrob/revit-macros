@@ -24,12 +24,12 @@ t.Start()
 
 for fitting in fittings:
     # Get element name and type name in lowercase for case-insensitive matching
-    elem_name = fitting.Name.ToLower() if fitting.Name else ""
+    #elem_name = fitting.Name.ToLower() if fitting.Name else ""
     type_elem = doc.GetElement(fitting.GetTypeId())
     type_name = type_elem.FamilyName.ToLower() if type_elem and type_elem.FamilyName else ""
     
     # Check if "transition" is in the name or type name
-    if "transition" in elem_name or "transition" in type_name:
+    if "transition" in type_name or "reducer" in type_name:
         # Look up the "Use Annotation Scale" parameter
         param = fitting.LookupParameter("Use Annotation Scale")
         count += 1
