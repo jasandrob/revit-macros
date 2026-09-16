@@ -1,0 +1,18 @@
+03_24_26 09:53:57
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 165, in main
+    s_path = find_spath()
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 70, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jvdeusen\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 38, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+AttributeError: 'NoneType' object has no attribute 'GetWorksharingCentralModelPath'
+
+----------------------------
+03_24_26 09:53:57
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------

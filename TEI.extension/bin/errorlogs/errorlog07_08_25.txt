@@ -1,0 +1,15 @@
+07_08_25 15:12:18
+hi
+----------------------------
+07_08_25 16:06:49
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\TEI.tab\Testing.Panel\fail.pushbutton\script.py", line 29, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\lib\functions.py", line 117, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+07_08_25 16:07:23
+hi
+----------------------------

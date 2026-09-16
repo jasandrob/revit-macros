@@ -1,0 +1,32 @@
+04_29_25 14:41:18
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+04_29_25 14:41:18
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+04_29_25 14:42:32
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+04_29_25 14:42:32
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------

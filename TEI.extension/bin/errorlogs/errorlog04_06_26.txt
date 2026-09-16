@@ -1,0 +1,16 @@
+04_06_26 12:57:41
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+04_06_26 12:57:41
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------

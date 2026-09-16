@@ -1,0 +1,97 @@
+11_07_23 13:54:43
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 79, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 108, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 13:58:08
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 79, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 108, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:00:52
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 79, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 108, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:06:38
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 77, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 73, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:10:10
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 79, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 73, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:13:14
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 79, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 112, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:13:41
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 29, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 112, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:15:17
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 29, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 112, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:25:06
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\TEI.tab\Testing.Panel\test6.pushbutton\script.py", line 29, in <module>
+    failer()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\lib\functions.py", line 112, in failer
+    print(1 + 'i')
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+----------------------------
+11_07_23 14:31:16
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 256, in main
+    jobinfo = jobfind(s_path)
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 126, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+11_07_23 14:31:16
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 265, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------

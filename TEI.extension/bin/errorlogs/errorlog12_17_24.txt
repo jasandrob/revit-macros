@@ -1,0 +1,18 @@
+12_17_24 16:42:01
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 165, in main
+    s_path = find_spath()
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 70, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jroberts\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 36, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+Exception: This Document is not a workshared document.
+
+----------------------------
+12_17_24 16:42:01
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI\TEI.extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------

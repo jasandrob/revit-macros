@@ -1,0 +1,36 @@
+03_30_26 08:44:27
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+03_30_26 10:24:42
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+03_30_26 11:02:24
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+03_30_26 11:33:14
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------

@@ -1,0 +1,179 @@
+01_19_26 08:08:43
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+01_19_26 08:08:43
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_19_26 08:11:41
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+01_19_26 08:11:41
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_19_26 08:17:32
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 08:21:37
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 165, in main
+    s_path = find_spath()
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 70, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jvdeusen\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 38, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+AttributeError: 'NoneType' object has no attribute 'GetWorksharingCentralModelPath'
+
+----------------------------
+01_19_26 08:21:37
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_19_26 08:23:45
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 09:56:45
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 10:03:48
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 10:07:52
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 10:38:27
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 11:45:41
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 12:15:20
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 12:45:59
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 176, in main
+    popup_dialog(output, te_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 135, in popup_dialog
+    if str(info[-1]) != 'ERROR':
+IndexError: index out of range: -1
+
+----------------------------
+01_19_26 12:56:02
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+01_19_26 12:56:02
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_19_26 13:38:13
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+01_19_26 13:38:13
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+01_19_26 13:40:10
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 166, in main
+    jobinfo = jobfind(s_path)
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 86, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+01_19_26 13:40:10
+Traceback (most recent call last):
+  File "K:\Revit\Pyrevit Macros\TEI - beta\TEI(beta).extension\hooks\doc-opened.py", line 175, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
