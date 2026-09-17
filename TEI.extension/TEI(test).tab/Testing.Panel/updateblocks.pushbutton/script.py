@@ -166,8 +166,11 @@ def compare(selected_blocks, master_set,sync_path):
                 not_found.append(block_name)
         else:
             #ends the script if block is not in the job directory
+            
+            central_path_converted = Path(str(Path(*parts[0:4])).replace("\\TEI-FS2\Master", "\\K:"))
+            
             forms.alert(
-                'Block "{}" is not saved in the job directory "{}". \nPlease relink block to this directory and try again'.format(block_name,central_path),
+                'Block "{}" is not saved in the job directory: \n "{}". \n\nPlease save the block to this directory, relink, and try again'.format(block_name,central_path_converted),
                 title="Error updating",
                 exitscript=True)
     
