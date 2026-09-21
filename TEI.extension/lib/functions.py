@@ -6,7 +6,6 @@ import os
 import traceback
 import datetime
 
-from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
 
 from settings import debug_mode
 
@@ -36,6 +35,8 @@ def failer():
 
 def handle_cad_dialog(sender, args):
     """Event handler to catch the paper/model space prompt and auto-select Yes."""
+    from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
+    
     if isinstance(args, TaskDialogShowingEventArgs):
         # Look for keywords related to the paper/model space prompt in the dialog message
         message_text = args.Message.lower()

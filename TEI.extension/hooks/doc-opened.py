@@ -15,20 +15,15 @@ import traceback
 # from datetime import datetime as dd
 import time
 
-import pyrevit
 from pyrevit import revit
 from pyrevit import script
 from pyrevit import forms
 
 
-import Autodesk.Revit.DB as DB
-
 #imports local functions from TEI/TEI.extension/lib
 from settings import debug_mode
 import functions as fun
 from functions import print_info, trace_print, failer, day
-
-
 
 
 
@@ -41,14 +36,13 @@ print(a)
 """
 
 
-
 def tei_path():
     """
     Returns the directory path TEI.extension. Useful so file path does not have to be coded for each user, use relative paths instead.
     Needs to be defined in each script because our imported functions cannot use pyrevit modules.
     """
 
-    script_path = pyrevit.script.get_script_path()
+    script_path = script.get_script_path()
 
     #uncomment this code in script file instead of a hook
     # script_path = os.path.dirname(os.path.dirname(script_path))   
@@ -140,7 +134,8 @@ def popup_dialog(string, te_path):
         
     else:
         msg = "Could not add job to current"
-        
+        print("ahh")
+        print_info(string)
         path_to_icon = os.path.join(te_path, 'bin', 'tei.png')
         forms.toast(msg, title="ERROR", appid=' ', icon=path_to_icon)
  

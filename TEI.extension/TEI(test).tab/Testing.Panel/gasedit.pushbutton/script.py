@@ -7,16 +7,12 @@ import os
 
 
 from pyrevit import revit
-from pyrevit import DB, forms\
-
+from pyrevit import script, DB, forms\, forms
 
 from Autodesk.Revit.DB import FilteredElementCollector, BuiltInCategory, BuiltInParameter, Transaction
 from Autodesk.Revit.Exceptions import OperationCanceledException
 from Autodesk.Revit.UI.Selection import ObjectType
 from Autodesk.Revit.DB.Plumbing import Pipe
-
-import pyrevit
-from pyrevit import script, forms
 
 import create_gas_object
 import gas_calc
@@ -49,7 +45,7 @@ def tei_path():
     Needs to be defined in each script because our imported functions cannot use pyrevit modules.
     """
 
-    script_path = pyrevit.script.get_script_path()
+    script_path = script.get_script_path()
 
 
     #comment out this code in a hook file instead of a script
