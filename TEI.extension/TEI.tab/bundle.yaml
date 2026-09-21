@@ -1,8 +1,8 @@
 layout:
   - Settings[beforeall:]
   - -----
-  - Testing
-  - -----
   - Open
+  - -----
+  - Macros
   - -----
 

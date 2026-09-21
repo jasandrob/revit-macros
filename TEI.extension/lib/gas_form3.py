@@ -3,11 +3,16 @@ called on by the open popup to make gas form
 """
 import sys
 import tkinter as tk
+from settings import debug_mode
+#from functions import print_info
 
-from functions import print_info
 
-
-
+def print_info(info):
+    """
+    will print info if debug mode is set to true
+    """
+    if debug_mode:
+        print(info)
 	
 def read_direct():
     """
@@ -473,13 +478,12 @@ def create_gas_popup():
 
 
     #create the non-standard selection
-    # sel_non_standard = tk.Label(master=fr_sel_non_standard, width=0, height=1, text="(Select for non-standard gas code, inlet/outlet pressures, or LPG", bg='wheat1')
+    # sel_non_standard = tk.Label(master=fr_sel_non_standard, width=0, height=1, text="Select for non-standard gas code, inlet/outlet pressures, or LPG", bg='wheat1')
     
 
     non_standard_button = tk.Button(
         master=fr_sel_non_standard,
-        text="NON-STANDARD NOT YET IMPLEMENTED",
-        #text="Select for non-standard gas code, inlet/outlet pressures, or LPG",
+        text="Select for non-standard gas code, inlet/outlet pressures, or LPG",
         # width=8,
         height=1,
         bg="wheat1",
@@ -491,7 +495,7 @@ def create_gas_popup():
 
 
     #create the button label
-    labeld = tk.Label(master=fr_txt_abv_button, width=20, height=2, text="", anchor='w', bg='wheat1')
+    labeld = tk.Label(master=fr_txt_abv_button, width=20, height=2, text="I'm in Frame d", anchor='w', bg='wheat1')
     labeld.grid(row=0, columnspan=3, padx = 5)
     
     
