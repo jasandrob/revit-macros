@@ -3,11 +3,16 @@ called on by the open popup to make gas form
 """
 import sys
 import tkinter as tk
+from settings import debug_mode
+#from functions import print_info
 
-from functions import print_info
 
-
-
+def print_info(info):
+    """
+    will print info if debug mode is set to true
+    """
+    if debug_mode:
+        print(info)
 	
 def read_direct():
     """
