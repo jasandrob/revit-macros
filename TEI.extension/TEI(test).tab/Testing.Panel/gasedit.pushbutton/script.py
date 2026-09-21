@@ -1,5 +1,5 @@
 """
-code to edit gas
+code to edit gas (size gas on selected pipes only)
 """
 import sys
 import subprocess
@@ -11,12 +11,12 @@ from pyrevit import DB, forms\
 
 
 from Autodesk.Revit.DB import FilteredElementCollector, BuiltInCategory, BuiltInParameter, Transaction
-
-
-
+from Autodesk.Revit.Exceptions import OperationCanceledException
+from Autodesk.Revit.UI.Selection import ObjectType
+from Autodesk.Revit.DB.Plumbing import Pipe
 
 import pyrevit
-from pyrevit import script
+from pyrevit import script, forms
 
 import create_gas_object
 import gas_calc
@@ -118,12 +118,39 @@ def get_pipe_sizes():
 
 
 def getPipes():
-#gets the elements of all pipes in the current view
-    collector = FilteredElementCollector(doc, active_view.Id)
-    collector.OfCategory(BuiltInCategory.OST_PipeCurves)
-    pipesInView = collector.ToElements()
+#gets the elements of all selected pipes in the current view
+    
+    # Get current selection
+    selected_ids = uidoc.Selection.GetElementIds()
+    # If nothing is selected, prompt the user to pick one interactively
+    if not selected_ids:
+        selected_ids = []
+        try:
+            picked_ref = uidoc.Selection.PickObjects(ObjectType.Element, "Please select pipes in the view and click Finish")
+            for ref in picked_ref:
+                selected_ids.append(ref.ElementId)
+        except OperationCanceledException:
+            # User pressed ESC to cancel the prompt
+            script.exit()
+    
+    #converts element ids to elements
+    selected_elements = [doc.GetElement(e_id) for e_id in selected_ids]
 
-    return pipesInView
+    #adds selected pipes only, alerts if non-pipe objects are selected
+    pipes = []
+    alert = 0
+    for elem in selected_elements:
+
+        if isinstance(elem, Pipe):
+            pipes.append(elem)
+        else:
+            alert += 1
+    
+    pipe_num = len(pipes)
+    if alert > 0:
+        forms.alert("{} non-pipe elements have been selected. These objects have been ignored and {} pipes have been sized".format(alert,pipe_num), exitscript=True)
+
+    return pipes
 
 
 
@@ -231,8 +258,9 @@ def pipe_edit(size_list):
 
 
 def main():
-    # size_list = get_pipe_sizes()
-    # pipe_edit(size_list)
+    
+    size_list = get_pipe_sizes()
+    pipe_edit(size_list)
     
     
 if __name__ == '__main__':
