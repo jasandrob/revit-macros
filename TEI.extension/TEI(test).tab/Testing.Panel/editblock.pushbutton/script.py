@@ -4,6 +4,7 @@ opens selected block in autocad
 """
 
 import os
+from pathlib import Path
 
 from Autodesk.Revit.DB import CADLinkType, ImportInstance, ModelPathUtils
 from Autodesk.Revit.UI.Selection import ObjectType
@@ -63,11 +64,27 @@ try:
         file_path = ModelPathUtils.ConvertModelPathToUserVisiblePath(model_path)
         
         if os.path.exists(file_path):
-            # Opens the file with its default registered application (AutoCAD for .dwg)
-            os.startfile(file_path)
-            forms.toaster.send_toast("Opening CAD file...", title="pyRevit")
+            
+            
+            #checks we are not on master
+            master_path = "S:\\MECHANICAL\_CostcoDetails"
+            p = Path(file_path).parts
+            if Path(*p[0:3]) != Path(master_path):
+                
+                # Opens the file with its default registered application (AutoCAD for .dwg)
+                os.startfile(file_path)
+                forms.toaster.send_toast("Opening CAD file...", title="pyRevit")                
+                    
+                
+            else:
+                forms.alert(
+                    msg="The selected block is linked to the MASTER directory. Blocks should be linked to a folder in the job's directory.",
+                    sub_msg="{}".format(file_path), 
+                    title="Master Block Selected - Error")
+            
+
         else:
-            forms.alert("The file path could not be found on disk:\n\n{}".format(file_path), title="File Not Found")
+            forms.alert("The file path could not be found on disk", title="File Not Found")
     else:
         forms.alert("Could not retrieve the external file reference for this CAD link.", title="Error")
 
