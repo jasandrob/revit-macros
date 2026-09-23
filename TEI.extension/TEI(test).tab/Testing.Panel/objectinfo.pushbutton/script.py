@@ -28,7 +28,8 @@ loc = elem.Location
 #xyz = XYZ(10,20,30)
 id = elem.Id
 
-print("CATEGORY: {}".format(elem.Category.Name))
+if elem.Category:
+    print("CATEGORY: {}".format(elem.Category.Name))
 print("ELEMENT: {}".format(elem))
 print("ID: {}".format(id))
 

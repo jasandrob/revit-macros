@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-reload linked cad code
+opens selected block in autocad
 """
 
 import os
