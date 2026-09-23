@@ -495,7 +495,7 @@ def create_gas_popup():
 
 
     #create the button label
-    labeld = tk.Label(master=fr_txt_abv_button, width=20, height=2, text="I'm in Frame d", anchor='w', bg='wheat1')
+    labeld = tk.Label(master=fr_txt_abv_button, width=20, height=2, text="", anchor='w', bg='wheat1')
     labeld.grid(row=0, columnspan=3, padx = 5)
     
     
