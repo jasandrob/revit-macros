@@ -61,8 +61,8 @@ try:
         cad_link_type.Reload()
         
         t.Commit()
-        
-    forms.toast("CAD link successfully reloaded!", title="Success", appid="Reload Link")
+
+    forms.alert("CAD link successfully reloaded: {}".format(elem.Category.Name), title="Success", warn_icon=False)
 
 except Exception as e:
     forms.alert("Failed to reload CAD link.\n\nError: {}".format(str(e)), title="Error")
