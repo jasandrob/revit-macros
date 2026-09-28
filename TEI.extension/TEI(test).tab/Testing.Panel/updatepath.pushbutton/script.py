@@ -5,11 +5,13 @@ updates the path of selected block
 import shutil
 import os
 
+from functions import handle_cad_dialog
+
 from Autodesk.Revit.DB import FilteredElementCollector, RevitLinkInstance, RevitLinkType, Transaction, CADLinkType
 from Autodesk.Revit.DB import ModelPathUtils, ExternalResourceReference, ExternalResourceTypes, PathType
 from Autodesk.Revit.UI import Selection
 from Autodesk.Revit.Exceptions import OperationCanceledException
-from pyrevit import script, forms
+from pyrevit import revit,script, forms
 
 
 import clr
@@ -18,7 +20,7 @@ from System.Windows.Forms import OpenFileDialog, DialogResult
 
 doc = __revit__.ActiveUIDocument.Document
 uidoc = __revit__.ActiveUIDocument
-
+uiapp = revit.HOST_APP.uiapp
 
 # 1. Prompt user to select a CAD Link instance in the view
 try:
@@ -70,6 +72,9 @@ if file_dialog.ShowDialog() == DialogResult.OK:
             PathType.Absolute
         )
         
+        #hides the paperspace message
+        uiapp.DialogBoxShowing += handle_cad_dialog
+        
         t = Transaction(doc, "Reload Link from New Path")
         t.Start()
         
@@ -77,7 +82,8 @@ if file_dialog.ShowDialog() == DialogResult.OK:
         link_type.LoadFrom(ext_ref)
         
         t.Commit()
-        
+                
+        uiapp.DialogBoxShowing += handle_cad_dialog
         forms.alert("Successfully reloaded link from:\n{}".format(new_filepath), title="Success")
         
     except Exception as e:

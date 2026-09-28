@@ -34,7 +34,14 @@ def failer():
 
 
 def handle_cad_dialog(sender, args):
-    """Event handler to catch the paper/model space prompt and auto-select Yes."""
+    """Event handler to catch the paper/model space prompt and auto-select Yes.
+        
+        Subscribe to the event handler before starting the transaction:
+        uiapp.DialogBoxShowing += handle_cad_dialog
+        
+        Crucial: Always unsubscribe from the event in a 'finally' block after the transaction to prevent it from affecting other standard Revit pop-ups later:
+        uiapp.DialogBoxShowing -= handle_cad_dialog
+    """
     from Autodesk.Revit.UI.Events import TaskDialogShowingEventArgs
     
     if isinstance(args, TaskDialogShowingEventArgs):
