@@ -62,7 +62,9 @@ try:
         
         t.Commit()
 
-    forms.alert("CAD link successfully reloaded: {}".format(elem.Category.Name), title="Success", warn_icon=False)
+    category = getattr(elem, 'Category', None)
+    block_name = category.Name if category else ""
+    forms.alert("CAD link successfully reloaded: {}".format(block_name), title="Success", warn_icon=False)
 
 except Exception as e:
     forms.alert("Failed to reload CAD link.\n\nError: {}".format(str(e)), title="Error")

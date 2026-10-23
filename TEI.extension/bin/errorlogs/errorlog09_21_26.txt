@@ -1,0 +1,52 @@
+09_21_26 13:23:57
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 166, in main
+    s_path = find_spath()
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 70, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jroberts\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 38, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+Exception: This Document is not a workshared document.
+
+----------------------------
+09_21_26 13:23:57
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 176, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+09_21_26 13:28:12
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 164, in main
+    s_path = find_spath()
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 68, in find_spath
+    server_path = revit.serverutils.get_server_path(doc, rsn_paths)
+  File "C:\Users\jroberts\AppData\Roaming\pyRevit-Master\pyrevitlib\pyrevit\revit\serverutils.py", line 38, in get_server_path
+    model_path = doc.GetWorksharingCentralModelPath()
+AttributeError: 'NoneType' object has no attribute 'GetWorksharingCentralModelPath'
+
+----------------------------
+09_21_26 13:28:12
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 174, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
+09_21_26 16:00:52
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 161, in main
+    jobinfo = jobfind(s_path)
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 80, in jobfind
+    jobparse = pathlist[-3]
+IndexError: index out of range: -3
+
+----------------------------
+09_21_26 16:00:52
+Traceback (most recent call last):
+  File "C:\Users\jroberts\Desktop\TEI - test\TEI.extension\hooks\doc-opened.py", line 170, in main
+    output = run_cpython(jobinfo[1:], te_path)
+UnboundLocalError: Local variable 'jobinfo' referenced before assignment.
+
+----------------------------
