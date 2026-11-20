@@ -3,10 +3,10 @@
 opens selected block in autocad
 """
 
-import os
+import os, sys
 from pathlib import Path
 
-from Autodesk.Revit.DB import CADLinkType, ImportInstance, ModelPathUtils
+from Autodesk.Revit.DB import CADLinkType, ImportInstance, ModelPathUtils, ExternalFileUtils
 from Autodesk.Revit.UI.Selection import ObjectType
 from Autodesk.Revit.Exceptions import OperationCanceledException
 from pyrevit import forms, script
@@ -55,6 +55,45 @@ if not cad_link_type:
 # Verify if it is actually linked (not just imported)
 if not cad_link_type.IsExternalFileReference():
     forms.alert("The selected CAD file is 'Imported' rather than 'Linked'. Import instances do not reference an external file path.", exitscript=True)
+
+
+#safety check to ensure selected linked file is in the same directory folder as the workshared model
+def confirm_or_exit(message, title="Confirm Action", continue_label="Continue", exit_label="Exit"):
+    """Show a dialog with Continue/Exit options; exits script unless user chooses continue."""
+    """Show a dialog with Continue/Exit options; exits silently if not continued."""
+    choice = forms.alert(
+        message,
+        title=title,
+        options=[continue_label, exit_label],
+        exitscript=False,
+    )
+    if choice != continue_label:
+        sys.exit()
+
+if doc.IsWorkshared:
+    central_model_path = doc.GetWorksharingCentralModelPath()
+    
+    # Convert the ModelPath object to a readable string format
+    central_path = ModelPathUtils.ConvertModelPathToUserVisiblePath(central_model_path)
+    parts = Path(central_path).parts
+    
+    job_dir = parts[1:4]
+
+    elem_id = elem.GetTypeId()
+    elem_type = doc.GetElement(elem_id)
+    cad_link_ref = elem_type.GetExternalFileReference().GetPath()
+    cad_link_str = ModelPathUtils.ConvertModelPathToUserVisiblePath(cad_link_ref)
+    
+    block_name = os.path.basename(cad_link_str)
+    parts_blk_path = Path(cad_link_str).parts
+    if parts_blk_path[1:4] != job_dir:
+        confirm_or_exit(
+            "This CAD link is referenced outside of this job's directory:\n\n {}\n\nDo you want to continue?".format(cad_link_str),
+            title="Edit CAD Link",
+            continue_label="Continue",
+            exit_label="Exit",
+        )
+    
 
 # Retrieve file path and open in AutoCAD
 try:
