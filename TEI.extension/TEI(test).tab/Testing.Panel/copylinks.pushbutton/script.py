@@ -2,7 +2,7 @@
 """
 copies linked cad from one project to another
 """
-
+import math
 from pyrevit import revit, DB, forms
 
 dest_doc = revit.doc
@@ -75,14 +75,37 @@ linked_count = 0
 with DB.Transaction(dest_doc, "Copy Sheet CAD Links") as t:
     t.Start()
     for cad_name, path, inst in matched_links:
+        src_tf = inst.GetTransform()
+        src_origin = src_tf.Origin
         opts = DB.DWGImportOptions()
         opts.ThisViewOnly = bool(inst.ViewSpecific)
-        opts.Placement = DB.ImportPlacement.Shared
+        opts.Placement = DB.ImportPlacement.Origin
 
         try:
             ok, link_id = dest_doc.Link(path, opts, dest_doc.ActiveView)
             if ok:
                 linked_count += 1
+            
+            new_inst = dest_doc.GetElement(link_id)
+            if new_inst:
+
+                # Unpin if Revit pinned it on import so it can be moved/rotated
+                was_pinned = new_inst.Pinned
+                if was_pinned:
+                    new_inst.Pinned = False
+                
+                new_tf = new_inst.GetTransform()
+                new_origin = new_tf.Origin
+
+                # 1. Translate to match source XY origin on the sheet
+                move_vec = DB.XYZ(
+                    src_origin.X - new_origin.X,
+                    src_origin.Y - new_origin.Y,
+                    0.0
+                )
+                if not move_vec.IsZeroLength():
+                    DB.ElementTransformUtils.MoveElement(dest_doc, new_inst.Id, move_vec)
+                    
         except Exception as ex:
             print("Failed to link '{}' ({}): {}".format(cad_name, path, ex))
     t.Commit()
